@@ -92,6 +92,15 @@ npm run package
 
 Press `F5` in VS Code to launch an Extension Development Host.
 
+## Publish To VS Code Marketplace
+
+Marketplace publishing requires a Visual Studio Marketplace publisher and a token with Marketplace Manage permissions.
+
+1. Create or open your publisher at <https://marketplace.visualstudio.com/manage/publishers/>.
+2. Create an Azure DevOps token with Marketplace `Manage` permission.
+3. Add it to this GitHub repo as an Actions secret named `VSCE_PAT`.
+4. Run the `Publish to VS Code Marketplace` workflow from the GitHub Actions tab.
+
 ## Star Bait, But Honest
 
 If this saves your compile from becoming performance art, star the repo and share it with a friend who ignores squiggles.

@@ -2,7 +2,7 @@
   "name": "tiki-tiki-code-alert",
   "displayName": "Tiki Tiki Code Alert",
   "description": "Plays a rising tiki-style buildup when VS Code diagnostics show errors and you keep coding.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "eshaha-r",
   "license": "MIT",
   "repository": {
@@ -33,6 +33,7 @@
     "onStartupFinished",
     "onCommand:tikiTikiCodeAlert.toggle",
     "onCommand:tikiTikiCodeAlert.testSound",
+    "onCommand:tikiTikiCodeAlert.selectCustomSound",
     "onCommand:tikiTikiCodeAlert.silence"
   ],
   "contributes": {
@@ -44,6 +45,10 @@
       {
         "command": "tikiTikiCodeAlert.testSound",
         "title": "Tiki Tiki Code Alert: Test Sound"
+      },
+      {
+        "command": "tikiTikiCodeAlert.selectCustomSound",
+        "title": "Tiki Tiki Code Alert: Select Custom Sound"
       },
       {
         "command": "tikiTikiCodeAlert.silence",

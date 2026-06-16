@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1
+
+- Adds `Tiki Tiki Code Alert: Select Custom Sound`.
+- Documents how to use a local licensed sound file.
+
 ## 0.1.0
 
 - Initial VS Code extension.

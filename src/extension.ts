@@ -5,6 +5,7 @@ import { SoundPlayer } from "./player";
 const CONFIG_NAMESPACE = "tikiTikiCodeAlert";
 const TOGGLE_COMMAND = "tikiTikiCodeAlert.toggle";
 const TEST_SOUND_COMMAND = "tikiTikiCodeAlert.testSound";
+const SELECT_CUSTOM_SOUND_COMMAND = "tikiTikiCodeAlert.selectCustomSound";
 const SILENCE_COMMAND = "tikiTikiCodeAlert.silence";
 
 export function activate(context: vscode.ExtensionContext): void {
@@ -36,6 +37,7 @@ class TikiTikiController implements vscode.Disposable {
       vscode.workspace.onDidChangeConfiguration((event) => this.handleConfigurationChanged(event)),
       vscode.commands.registerCommand(TOGGLE_COMMAND, () => this.toggleEnabled()),
       vscode.commands.registerCommand(TEST_SOUND_COMMAND, () => this.testSound()),
+      vscode.commands.registerCommand(SELECT_CUSTOM_SOUND_COMMAND, () => this.selectCustomSound()),
       vscode.commands.registerCommand(SILENCE_COMMAND, () => this.silence())
     );
 
@@ -143,6 +145,36 @@ class TikiTikiController implements vscode.Disposable {
 
   private async testSound(): Promise<void> {
     await this.player.play(this.getCustomSoundFile());
+  }
+
+  private async selectCustomSound(): Promise<void> {
+    const picked = await vscode.window.showOpenDialog({
+      canSelectFiles: true,
+      canSelectFolders: false,
+      canSelectMany: false,
+      openLabel: "Use Sound",
+      title: "Select a licensed sound file",
+      filters: {
+        Audio: ["wav", "mp3", "m4a", "aac", "aiff", "flac", "ogg"],
+        "All Files": ["*"]
+      }
+    });
+
+    const soundUri = picked?.[0];
+    if (!soundUri) {
+      return;
+    }
+
+    await this.getConfiguration().update("customSoundFile", soundUri.fsPath, vscode.ConfigurationTarget.Global);
+
+    const action = await vscode.window.showInformationMessage(
+      "Tiki Tiki Code Alert custom sound saved.",
+      "Test Sound"
+    );
+
+    if (action === "Test Sound") {
+      await this.player.play(soundUri.fsPath);
+    }
   }
 
   private silence(): void {

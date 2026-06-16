@@ -22,7 +22,7 @@ The extension does not ship copyrighted meme audio. The default sound is a gener
 Download the latest `.vsix` from the GitHub release, then run:
 
 ```bash
-code --install-extension tiki-tiki-code-alert-0.1.0.vsix
+code --install-extension tiki-tiki-code-alert-0.1.1.vsix
 ```
 
 Or install it from VS Code:
@@ -35,6 +35,7 @@ Or install it from VS Code:
 
 - `Tiki Tiki Code Alert: Toggle`
 - `Tiki Tiki Code Alert: Test Sound`
+- `Tiki Tiki Code Alert: Select Custom Sound`
 - `Tiki Tiki Code Alert: Silence`
 
 ## Settings
@@ -55,7 +56,18 @@ Or install it from VS Code:
 - `errors`: trigger on any active error diagnostic in the current file.
 - `syntaxLike`: trigger only when a diagnostic looks like a syntax or parser error.
 
-For a custom sound, use an absolute path to a file you have rights to use:
+## Add Your Own Tiki Sound
+
+Use a sound file that you own or have permission to use. Do not extract copyrighted audio from YouTube, TikTok, Instagram, or another creator's video unless you have the rights.
+
+The easiest way:
+
+1. Open the Command Palette.
+2. Run `Tiki Tiki Code Alert: Select Custom Sound`.
+3. Choose a local audio file.
+4. Click `Test Sound`.
+
+You can also set the path manually:
 
 ```json
 {

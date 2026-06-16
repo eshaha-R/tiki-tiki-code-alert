@@ -1,0 +1,113 @@
+{
+  "name": "tiki-tiki-code-alert",
+  "displayName": "Tiki Tiki Code Alert",
+  "description": "Plays a rising tiki-style buildup when VS Code diagnostics show errors and you keep coding.",
+  "version": "0.1.0",
+  "publisher": "eshaha-r",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eshaha-R/tiki-tiki-code-alert.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eshaha-R/tiki-tiki-code-alert/issues"
+  },
+  "homepage": "https://github.com/eshaha-R/tiki-tiki-code-alert#readme",
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "diagnostics",
+    "syntax errors",
+    "sound",
+    "fun",
+    "productivity",
+    "lint",
+    "typescript"
+  ],
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:tikiTikiCodeAlert.toggle",
+    "onCommand:tikiTikiCodeAlert.testSound",
+    "onCommand:tikiTikiCodeAlert.silence"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "tikiTikiCodeAlert.toggle",
+        "title": "Tiki Tiki Code Alert: Toggle"
+      },
+      {
+        "command": "tikiTikiCodeAlert.testSound",
+        "title": "Tiki Tiki Code Alert: Test Sound"
+      },
+      {
+        "command": "tikiTikiCodeAlert.silence",
+        "title": "Tiki Tiki Code Alert: Silence"
+      }
+    ],
+    "configuration": {
+      "title": "Tiki Tiki Code Alert",
+      "properties": {
+        "tikiTikiCodeAlert.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable the error buildup sound."
+        },
+        "tikiTikiCodeAlert.delayMs": {
+          "type": "number",
+          "default": 1500,
+          "minimum": 0,
+          "maximum": 10000,
+          "description": "Milliseconds to wait after continued editing with active errors before playing the buildup."
+        },
+        "tikiTikiCodeAlert.cooldownMs": {
+          "type": "number",
+          "default": 3500,
+          "minimum": 500,
+          "maximum": 60000,
+          "description": "Minimum milliseconds between repeated buildup sounds."
+        },
+        "tikiTikiCodeAlert.triggerMode": {
+          "type": "string",
+          "default": "errors",
+          "enum": [
+            "errors",
+            "syntaxLike"
+          ],
+          "enumDescriptions": [
+            "Trigger on any active error diagnostic in the current file.",
+            "Trigger only on diagnostics whose message/source look like parser or syntax errors."
+          ],
+          "description": "Choose which diagnostics can trigger the buildup."
+        },
+        "tikiTikiCodeAlert.customSoundFile": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to a licensed local sound file. Leave blank to use the generated built-in tiki-style WAV."
+        },
+        "tikiTikiCodeAlert.statusBarEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the Tiki Tiki status bar item."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "npm run compile && node --test out/test/*.test.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/vscode": "^1.92.0",
+    "@vscode/vsce": "^3.6.0",
+    "typescript": "^5.5.4"
+  }
+}

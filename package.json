@@ -3,7 +3,7 @@
   "displayName": "Tiki Tiki Code Alert",
   "description": "Plays a rising tiki-style buildup when VS Code diagnostics show errors and you keep coding.",
   "version": "0.1.1",
-  "publisher": "eshaha-r",
+  "publisher": "Eshaha",
   "license": "MIT",
   "repository": {
     "type": "git",
